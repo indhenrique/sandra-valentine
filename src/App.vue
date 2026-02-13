@@ -8,6 +8,13 @@
   <dialog ref="dialogRef" class="flower-dialog" @cancel.prevent>
     <button class="close-button" @click="closeDialog">&times;</button>
 
+    <template v-if="dialogStep === 'welcome'">
+      <div style="color: white">Encontra a flor correta</div>
+      <div class="dialog-buttons">
+        <button class="fall-button" @click="startExperience">Começar</button>
+      </div>
+    </template>
+
     <template v-if="dialogStep === 'ask'">
       <div style="color: white">Sandra, queres ser a minha "valentina"?</div>
       <div class="dialog-buttons">
@@ -66,6 +73,8 @@ function startMusic() {
 
 onMounted(() => {
   window.addEventListener('resize', onResize)
+  // Show welcome dialog
+  dialogRef.value?.showModal()
   // Try to start music immediately
   startMusic()
   // Also try on first click anywhere
@@ -113,7 +122,7 @@ function onCellClick(i: number) {
   }
 }
 
-const dialogStep = ref<'ask' | 'sure' | 'party'>('ask')
+const dialogStep = ref<'welcome' | 'ask' | 'sure' | 'party'>('welcome')
 
 function closeDialog() {
   dialogRef.value?.close()
@@ -121,6 +130,11 @@ function closeDialog() {
   if (partyMode.value) {
     stopParty()
   }
+}
+
+function startExperience() {
+  dialogRef.value?.close()
+  dialogStep.value = 'ask'
 }
 
 const rising = ref(false)
