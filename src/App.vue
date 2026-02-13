@@ -107,11 +107,7 @@ function onCellClick(i: number) {
     dialogRef.value?.showModal()
   } else if (i === partyCell.value) {
     partyMode.value = !partyMode.value
-    if (partyMode.value) {
-      audio.play()
-    } else {
-      audio.pause()
-    }
+    // Music keeps playing in the background
   } else {
     toggleRotation(i)
   }
@@ -136,7 +132,7 @@ function startParty() {
 
 function stopParty() {
   partyMode.value = false
-  audio.pause()
+  // Music keeps playing in the background
 }
 
 function dropFlowers() {
