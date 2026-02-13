@@ -44,17 +44,41 @@ import romanticMusic from '@/assets/music/amalvinay-all-of-me-piano-version-1689
 const images = [flower1, flower2, flower3, flower4, flower5, flower6]
 const audio = new Audio(romanticMusic)
 audio.loop = true
+audio.volume = 0.5
 
 const width = ref(window.innerWidth)
 const height = ref(window.innerHeight)
+const musicStarted = ref(false)
 
 function onResize() {
   width.value = window.innerWidth
   height.value = window.innerHeight
 }
 
-onMounted(() => window.addEventListener('resize', onResize))
-onUnmounted(() => window.removeEventListener('resize', onResize))
+function startMusic() {
+  if (!musicStarted.value) {
+    audio.play().catch(() => {
+      // Browser blocked autoplay, will try on first user interaction
+    })
+    musicStarted.value = true
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('resize', onResize)
+  // Try to start music immediately
+  startMusic()
+  // Also try on first click anywhere
+  const startOnClick = () => {
+    startMusic()
+    document.removeEventListener('click', startOnClick)
+  }
+  document.addEventListener('click', startOnClick)
+})
+onUnmounted(() => {
+  window.removeEventListener('resize', onResize)
+  audio.pause()
+})
 
 const isMobile = computed(() => width.value < 768)
 const targetSize = computed(() => isMobile.value ? 75 : 150)
@@ -84,7 +108,6 @@ function onCellClick(i: number) {
   } else if (i === partyCell.value) {
     partyMode.value = !partyMode.value
     if (partyMode.value) {
-      audio.currentTime = 0
       audio.play()
     } else {
       audio.pause()
@@ -108,8 +131,7 @@ const rising = ref(false)
 
 function startParty() {
   partyMode.value = true
-  audio.currentTime = 0
-  audio.play()
+  // Music is already playing in the background
 }
 
 function stopParty() {
