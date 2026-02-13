@@ -46,7 +46,7 @@ import flower3 from '@/assets/images/flower_3.png'
 import flower4 from '@/assets/images/flower_4.png'
 import flower5 from '@/assets/images/flower_5.png'
 import flower6 from '@/assets/images/flower_6.png'
-import romanticMusic from '@/assets/music/partyonwebbi.wav'
+import romanticMusic from '@/assets/music/amalvinay-all-of-me-piano-version-168903.mp3'
 
 const images = [flower1, flower2, flower3, flower4, flower5, flower6]
 const audio = new Audio(romanticMusic)
