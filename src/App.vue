@@ -63,11 +63,27 @@ function onResize() {
 }
 
 function startMusic() {
+  if (!musicStarted.value && audio.paused) {
+    audio.play()
+      .then(() => {
+        musicStarted.value = true
+      })
+      .catch((error) => {
+        console.log('Autoplay blocked:', error)
+        // Will retry on next user interaction
+      })
+  }
+}
+
+function ensureMusicPlays() {
   if (!musicStarted.value) {
-    audio.play().catch(() => {
-      // Browser blocked autoplay, will try on first user interaction
-    })
-    musicStarted.value = true
+    audio.play()
+      .then(() => {
+        musicStarted.value = true
+      })
+      .catch(() => {
+        // Last resort fallback
+      })
   }
 }
 
@@ -75,14 +91,18 @@ onMounted(() => {
   window.addEventListener('resize', onResize)
   // Show welcome dialog
   dialogRef.value?.showModal()
-  // Try to start music immediately
+
+  // Try autoplay (will fail on most browsers)
   startMusic()
-  // Also try on first click anywhere
-  const startOnClick = () => {
-    startMusic()
-    document.removeEventListener('click', startOnClick)
+
+  // Listen for ANY user interaction
+  const handlers = ['click', 'touchstart', 'keydown']
+  const ensureMusic = () => {
+    ensureMusicPlays()
+    // Clean up after first successful play
+    handlers.forEach(event => document.removeEventListener(event, ensureMusic))
   }
-  document.addEventListener('click', startOnClick)
+  handlers.forEach(event => document.addEventListener(event, ensureMusic))
 })
 onUnmounted(() => {
   window.removeEventListener('resize', onResize)
