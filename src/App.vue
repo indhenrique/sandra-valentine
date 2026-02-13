@@ -39,15 +39,11 @@ import flower3 from '@/assets/images/flower_3.png'
 import flower4 from '@/assets/images/flower_4.png'
 import flower5 from '@/assets/images/flower_5.png'
 import flower6 from '@/assets/images/flower_6.png'
-import partyMusic from '@/assets/music/partyonwebbi.wav'
+import romanticMusic from '@/assets/music/amalvinay-all-of-me-piano-version-168903.mp3'
 
 const images = [flower1, flower2, flower3, flower4, flower5, flower6]
-const audio = new Audio(partyMusic)
-audio.addEventListener('timeupdate', () => {
-  if (audio.duration - audio.currentTime <= 0.3) {
-    audio.currentTime = 0.95
-  }
-})
+const audio = new Audio(romanticMusic)
+audio.loop = true
 
 const width = ref(window.innerWidth)
 const height = ref(window.innerHeight)
@@ -88,7 +84,7 @@ function onCellClick(i: number) {
   } else if (i === partyCell.value) {
     partyMode.value = !partyMode.value
     if (partyMode.value) {
-      audio.currentTime = 0.95
+      audio.currentTime = 0
       audio.play()
     } else {
       audio.pause()
@@ -112,7 +108,7 @@ const rising = ref(false)
 
 function startParty() {
   partyMode.value = true
-  audio.currentTime = 0.95
+  audio.currentTime = 0
   audio.play()
 }
 
