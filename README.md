@@ -1,27 +1,14 @@
-# flowers
+# Sandra Valentine 💐
 
-This template should help get you started developing with Vue 3 in Vite.
+A romantic interactive flower meadow for Valentine's Day, built with Vue 3 and TypeScript.
 
-## Recommended IDE Setup
+## About
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Click on the flowers to rotate them, and find the special flower with a heart to ask the special question!
 
-## Recommended Browser Setup
+## Live Demo
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+Visit: [https://indhenrique.github.io/sandra-valentine/](https://indhenrique.github.io/sandra-valentine/)
 
 ## Project Setup
 
@@ -29,14 +16,41 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Development
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Build for Production
 
 ```sh
 npm run build
 ```
+
+## Technologies
+
+- Vue 3 + TypeScript
+- Vite
+- SCSS
+- Pinia
+
+## Deployment
+
+This project is automatically deployed to GitHub Pages when changes are pushed to the master branch.
+
+## Adding Your Own Music
+
+To add your own soft romantic music:
+
+1. Download a royalty-free music file from:
+   - [Pixabay](https://pixabay.com/music/search/romantic%20piano/) (completely free)
+   - [Bensound](https://www.bensound.com/royalty-free-music/track/love)
+   - [Fesliyan Studios](https://www.fesliyanstudios.com/royalty-free-music/downloads-c/romantic-music/23)
+
+2. Replace the file at `src/assets/music/partyonwebbi.wav` with your music file
+3. Update the import in `src/App.vue` if the filename changes
+
+---
+
+Made with ❤️ for Sandra

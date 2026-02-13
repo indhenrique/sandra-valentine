@@ -1,7 +1,7 @@
 <template>
   <div class="container" :class="{ 'party-mode': partyMode, falling, rising }" :style="gridStyle">
     <div class="cell" v-for="i in totalCells" :key="i" :class="{ rotated: rotatedCells.has(i), special: i === specialCell, party: i === partyCell }" :style="(falling || rising) ? { animationDelay: `${Math.random() * 0.8}s` } : {}" @click="onCellClick(i)">
-      <img :src="shuffled[i - 1]" alt="flower" />
+      <img :src="shuffled[i - 1]" alt="flor" />
     </div>
   </div>
 
@@ -9,23 +9,23 @@
     <button class="close-button" @click="closeDialog">&times;</button>
 
     <template v-if="dialogStep === 'ask'">
-      <div style="color: white">Anja, will you be my valentine?</div>
+      <div style="color: white">Sandra, queres ser a minha "valentina"?</div>
       <div class="dialog-buttons">
-        <button class="fall-button" @click="answerYes">Yes</button>
-        <button class="fall-button" @click="answerNo">No</button>
+        <button class="fall-button" @click="answerYes">Sim</button>
+        <button class="fall-button" @click="answerNo">Não</button>
       </div>
     </template>
 
     <template v-if="dialogStep === 'sure'">
-      <div style="color: white">Are you sure?</div>
+      <div style="color: white">Tens a certeza?</div>
       <div class="dialog-buttons">
-        <button ref="runawayRef" class="fall-button runaway" :style="{ transform: `translate(${runawayOffset.x}px, ${runawayOffset.y}px)` }" @mouseover="moveRunaway" @click="sureYes">Yes</button>
-        <button class="fall-button" @click="sureNo">No</button>
+        <button ref="runawayRef" class="fall-button runaway" :style="{ transform: `translate(${runawayOffset.x}px, ${runawayOffset.y}px)` }" @mouseover="moveRunaway" @click="sureYes">Sim</button>
+        <button class="fall-button" @click="sureNo">Não</button>
       </div>
     </template>
 
     <template v-if="dialogStep === 'party'">
-      <div style="color: white">yeeeeeeeeaaaah!</div>
+      <div style="color: white">siiiiiiimmmmm!</div>
     </template>
   </dialog>
 </template>
